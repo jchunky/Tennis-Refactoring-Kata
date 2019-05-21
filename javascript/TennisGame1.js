@@ -1,4 +1,4 @@
-var TennisGame1 = function(player1Name, player2Name) {
+export var TennisGame1 = function(player1Name, player2Name) {
     this.m_score1 = 0;
     this.m_score2 = 0;
     this.player1Name = player1Name;
