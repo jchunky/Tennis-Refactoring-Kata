@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
 
+gem 'guard'
+gem 'rubocop'
 gem 'test-unit'
