@@ -1,67 +1,36 @@
-export var TennisGame1 = function(player1Name, player2Name) {
-    this.m_score1 = 0;
-    this.m_score2 = 0;
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
-};
+export class TennisGame1 {
+  constructor(name1, name2) {
+    this.p1 = 0;
+    this.p2 = 0;
+    this.name1 = name1;
+    this.name2 = name2;
+  }
 
-TennisGame1.prototype.wonPoint = function(playerName) {
-    if (playerName === "player1")
-        this.m_score1 += 1;
-    else
-        this.m_score2 += 1;
-};
+  wonPoint(name) {
+    name === this.name1 ? (this.p1 += 1) : (this.p2 += 1);
+  }
 
-TennisGame1.prototype.getScore = function() {
-    var score = "";
-    var tempScore = 0;
-    if (this.m_score1 === this.m_score2) {
-        switch (this.m_score1) {
-            case 0:
-                score = "Love-All";
-                break;
-            case 1:
-                score = "Fifteen-All";
-                break;
-            case 2:
-                score = "Thirty-All";
-                break;
-            default:
-                score = "Deuce";
-                break;
-        }
-    } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
-        var minusResult = this.m_score1 - this.m_score2;
-        if (minusResult === 1) score = "Advantage player1";
-        else if (minusResult === -1) score = "Advantage player2";
-        else if (minusResult >= 2) score = "Win for player1";
-        else score = "Win for player2";
-    } else {
-        for (var i = 1; i < 3; i++) {
-            if (i === 1) tempScore = this.m_score1;
-            else {
-                score += "-";
-                tempScore = this.m_score2;
-            }
-            switch (tempScore) {
-                case 0:
-                    score += "Love";
-                    break;
-                case 1:
-                    score += "Fifteen";
-                    break;
-                case 2:
-                    score += "Thirty";
-                    break;
-                case 3:
-                    score += "Forty";
-                    break;
-            }
-        }
+  getScore() {
+    if (this.p1 === this.p2 && this.p1 <= 2) {
+      return `${this.description(this.p1)}-All`;
     }
-    return score;
-};
+    if (this.p1 === this.p2) {
+      return "Deuce";
+    }
+    if (Math.max(this.p1, this.p2) <= 3) {
+      return `${this.description(this.p1)}-${this.description(this.p2)}`;
+    }
+    if (Math.abs(this.p1 - this.p2) === 1) {
+      return `Advantage ${this.leader()}`;
+    }
+    return `Win for ${this.leader()}`;
+  }
 
-if (typeof window === "undefined") {
-    module.exports = TennisGame1;
+  description(points) {
+    return { "0": "Love", "1": "Fifteen", "2": "Thirty", "3": "Forty" }[points];
+  }
+
+  leader() {
+    return this.p1 > this.p2 ? this.name1 : this.name2;
+  }
 }
