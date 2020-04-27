@@ -1,13 +1,13 @@
 export class TennisGame1 {
   constructor(name1, name2) {
-    this.p1 = 0;
-    this.p2 = 0;
     this.name1 = name1;
     this.name2 = name2;
+    this.p1 = 0;
+    this.p2 = 0;
   }
 
   wonPoint(name) {
-    name === this.name1 ? (this.p1 += 1) : (this.p2 += 1);
+    name === this.name1 ? this.p1++ : this.p2++;
   }
 
   getScore() {
@@ -27,7 +27,7 @@ export class TennisGame1 {
   }
 
   description(points) {
-    return { "0": "Love", "1": "Fifteen", "2": "Thirty", "3": "Forty" }[points];
+    return ["Love", "Fifteen", "Thirty", "Forty"][points];
   }
 
   leader() {
