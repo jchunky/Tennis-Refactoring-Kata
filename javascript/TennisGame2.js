@@ -1,4 +1,4 @@
-function calculateScore(name1, name2, p1, p2) {
+function score(name1, name2, p1, p2) {
   if (p1 === p2 && p1 <= 2) {
     return `${description(p1)}-All`;
   }
@@ -40,6 +40,6 @@ export class TennisGame2 {
   }
 
   getScore() {
-    return calculateScore(this.name1, this.name2, this.p1, this.p2);
+    return score(this.name1, this.name2, this.p1, this.p2);
   }
 }
