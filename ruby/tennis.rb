@@ -49,16 +49,16 @@ end
 
 class TennisGame2 < Tennis
   def score
-    if [p1, p2].max >= 4 && (p1 - p2).abs >= 2
-      "Win for #{leader}"
-    elsif [p1, p2].max >= 4 && (p1 - p2).abs >= 1
-      "Advantage #{leader}"
-    elsif p1 == p2 && p1 >= 3
-      "Deuce"
-    elsif p1 == p2
-      "#{call1}-All"
-    else
+    if [p1, p2].max <= 3 && p1 != p2
       "#{call1}-#{call2}"
+    elsif (p1 - p2).abs >= 2
+      "Win for #{leader}"
+    elsif (p1 - p2).abs >= 1
+      "Advantage #{leader}"
+    elsif p1 >= 3
+      "Deuce"
+    else
+      "#{call1}-All"
     end
   end
 end
