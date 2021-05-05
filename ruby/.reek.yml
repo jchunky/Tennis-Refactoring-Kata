@@ -21,4 +21,3 @@ exclude_paths:
   - lib/legacy
   - lib/rake/legacy_tasks
   - lib/smelly.rb
-  - tennis_test.rb
