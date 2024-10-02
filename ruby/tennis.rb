@@ -25,7 +25,7 @@ class Tennis
   private
 
   def normal_score?
-    [p1, p2].max <= 3 && p1 != p2
+    p1 != p2 && [p1, p2].max <= 3
   end
 
   def tie_game?
@@ -37,11 +37,11 @@ class Tennis
   end
 
   def advantage?
-    (p1 - p2).abs == 1 && [p1, p2].max >= 4
+    [p1, p2].max >= 4 && (p1 - p2).abs == 1
   end
 
   def win?
-    (p1 - p2).abs >= 2 && [p1, p2].max >= 4
+    [p1, p2].max >= 4 && (p1 - p2).abs >= 2
   end
 
   def leader
