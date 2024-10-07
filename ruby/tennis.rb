@@ -25,23 +25,35 @@ class TennisGame
   private
 
   def normal_score?
-    score1 != score2 && [score1, score2].max <= 3
+    !scores_equal? && max_score <= 3
   end
 
   def tie?
-    score1 == score2 && score1 <= 2
+    scores_equal? && score1 <= 2
   end
 
   def deuce?
-    score1 == score2 && score1 >= 3
+    scores_equal? && score1 >= 3
   end
 
   def advantage?
-    [score1, score2].max >= 4 && (score1 - score2).abs == 1
+    max_score >= 4 && score_diff == 1
   end
 
   def win?
-    [score1, score2].max >= 4 && (score1 - score2).abs >= 2
+    max_score >= 4 && score_diff >= 2
+  end
+
+  def scores_equal?
+    score1 == score2
+  end
+
+  def max_score
+    [score1, score2].max
+  end
+
+  def score_diff
+    (score1 - score2).abs
   end
 
   def leader
