@@ -9,9 +9,9 @@ class TennisGame < Struct.new(:player1, :player2, :score1, :score2)
 
   def score
     if normal_score?
-      "#{describe(score1)}-#{describe(score2)}"
+      "#{score_name(score1)}-#{score_name(score2)}"
     elsif tied_score?
-      "#{describe(score1)}-All"
+      "#{score_name(score1)}-All"
     elsif deuce?
       "Deuce"
     elsif advantage?
@@ -24,26 +24,26 @@ class TennisGame < Struct.new(:player1, :player2, :score1, :score2)
   private
 
   def normal_score?
-    !tied? && max_score <= 3
+    !tie? && max_score <= 3
   end
 
   def tied_score?
-    tied? && score1 <= 2
+    tie? && score1 <= 2
   end
 
   def deuce?
-    tied? && score1 >= 3
+    tie? && score1 >= 3
   end
 
   def advantage?
-    max_score >= 4 && score_difference == 1
+    max_score >= 4 && score_diff == 1
   end
 
   def win?
-    max_score >= 4 && score_difference >= 2
+    max_score >= 4 && score_diff >= 2
   end
 
-  def describe(score)
+  def score_name(score)
     %w[Love Fifteen Thirty Forty][score]
   end
 
@@ -51,7 +51,7 @@ class TennisGame < Struct.new(:player1, :player2, :score1, :score2)
     score1 > score2 ? player1 : player2
   end
 
-  def tied?
+  def tie?
     score1 == score2
   end
 
@@ -59,7 +59,7 @@ class TennisGame < Struct.new(:player1, :player2, :score1, :score2)
     [score1, score2].max
   end
 
-  def score_difference
+  def score_diff
     (score1 - score2).abs
   end
 end
