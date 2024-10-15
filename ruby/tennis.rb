@@ -9,12 +9,12 @@ class TennisGame < Struct.new(:player1, :player2, :score1, :score2)
 
   def score
     case
-    when max_score <= 3 && score_diff >= 1
-      "#{score_name(score1)}-#{score_name(score2)}"
     when max_score <= 2 && score_diff == 0
       "#{score_name(score1)}-All"
     when max_score >= 3 && score_diff == 0
       "Deuce"
+    when max_score <= 3 && score_diff >= 1
+      "#{score_name(score1)}-#{score_name(score2)}"
     when max_score >= 4 && score_diff == 1
       "Advantage #{leader}"
     when max_score >= 4 && score_diff >= 2
