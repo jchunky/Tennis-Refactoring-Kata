@@ -12,7 +12,7 @@ class Player
     @score += 1
   end
 
-  def score_description
+  def score_name
     SCORES[score]
   end
 end
@@ -32,9 +32,9 @@ class TennisGame
 
   def score
     case
-    when max_score <= 2 && score_diff == 0 then "#{player1.score_description}-All"
+    when max_score <= 2 && score_diff == 0 then "#{player1.score_name}-All"
     when max_score >= 3 && score_diff == 0 then "Deuce"
-    when max_score <= 3 && score_diff >= 1 then "#{player1.score_description}-#{player2.score_description}"
+    when max_score <= 3 && score_diff >= 1 then "#{player1.score_name}-#{player2.score_name}"
     when max_score >= 4 && score_diff == 1 then "Advantage #{leader.name}"
     when max_score >= 4 && score_diff >= 2 then "Win for #{leader.name}"
     end
