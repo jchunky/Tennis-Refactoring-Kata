@@ -42,17 +42,9 @@ class TennisGame
 
   private
 
-  def leader
-    [player1, player2].max_by(&:score)
-  end
-
-  def max_score
-    [player1, player2].map(&:score).max
-  end
-
-  def score_diff
-    [player1, player2].map(&:score).reduce(&:-).abs
-  end
+  def leader = [player1, player2].max_by(&:score)
+  def max_score = [player1, player2].map(&:score).max
+  def score_diff = [player1, player2].map(&:score).reduce(&:-).abs
 end
 
 class TennisGame1 < TennisGame; end
