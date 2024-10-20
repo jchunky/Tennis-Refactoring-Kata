@@ -12,9 +12,7 @@ class Player
     @score += 1
   end
 
-  def score_name
-    SCORE_LABELS[score]
-  end
+  def score_name = SCORE_LABELS[score]
 end
 
 class TennisGame
