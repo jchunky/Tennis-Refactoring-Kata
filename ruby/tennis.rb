@@ -1,15 +1,12 @@
-class Player
+Player = Struct.new(:name, :score) do
   SCORE_LABELS = %w[Love Fifteen Thirty Forty]
 
-  attr_reader :score, :name
-
   def initialize(name)
-    @name = name
-    @score = 0
+    super(name, 0)
   end
 
   def increment_score
-    @score += 1
+    self.score += 1
   end
 
   def score_name = SCORE_LABELS[score]
@@ -40,8 +37,8 @@ class TennisGame
 
   private
 
-  def leader     = [player1, player2].max_by(&:score)
-  def max_score  = [player1, player2].map(&:score).max
+  def leader = [player1, player2].max_by(&:score)
+  def max_score = [player1, player2].map(&:score).max
   def score_diff = [player1, player2].map(&:score).reduce(&:-).abs
 end
 
